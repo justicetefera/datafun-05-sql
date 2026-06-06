@@ -46,9 +46,8 @@ You will run the retail example, then implement the same pipeline for a domain y
 
 ## Instructions
 
-Follow the
-[step-by-step workflow guide](https://justicetefera.github.io/pro-analytics-02/workflow-b-apply-example-project/)
-to complete:
+Follow the [step-by-step workflow guide](https://justicetefera.github.io/datafun-05-sql/) to complete:
+
 
 1. Phase 1. **Start & Run**
 2. Phase 2. **Change Authorship**
