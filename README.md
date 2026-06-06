@@ -107,7 +107,8 @@ code .
 
 These are listed for convenience.
 For best results, follow the detailed instructions in
-[pro-analytics-02 guide](https://justicetefera.github.io/pro-analytics-02/).
+[Workflow B: Apply Example Project](https://justicetefera.github.io/datafun-05-sql/workflow-b-apply-example-project/)
+
 
 ```shell
 uv self update
