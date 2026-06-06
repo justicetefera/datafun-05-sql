@@ -1,0 +1,1 @@
+SELECT * FROM sale LIMIT 5;

@@ -1,17 +1,17 @@
--- sql/duckdb/case_retail_bootstrap.sql
+-- sql/sqlite/case_retail_bootstrap.sql
 -- ============================================================
 -- PURPOSE
 -- ============================================================
--- Creates retail tables and loads data from CSV files (DuckDB).
+-- Creates retail tables and loads data from CSV files (SQLite).
 --
 -- ASSUMPTION:
 -- We always run all commands from the project root directory.
 --
 -- EXPECTED PROJECT PATHS (relative to repo root):
---   SQL:  sql/duckdb/case_retail_bootstrap.sql
+--   SQL:  sql/sqlite/case_retail_bootstrap.sql
 --   CSV:  data/raw/retail/store.csv
 --   CSV:  data/raw/retail/sale.csv
---   DB:   artifacts/duckdb/retail.duckdb
+--   DB:   artifacts/sqlite/retail.sqlite
 --
 --
 -- ============================================================
@@ -60,7 +60,7 @@ BEGIN TRANSACTION;
 -- In retail, stores exist independently of sales.
 -- Therefore, create the store table before the sale table.
 --
--- Create the `store` table using DuckDB SQL syntax and data types.
+-- Create the `store` table using SQLite SQL syntax and data types.
 -- In our table, all the fields are required (NOT NULL).
 -- This means that every record must have a value for these fields.
 -- The primary key is store_id, which uniquely identifies each store.
@@ -71,7 +71,7 @@ CREATE TABLE IF NOT EXISTS store (
   city TEXT NOT NULL,
   region TEXT NOT NULL
 );
--- Create the `sale` table using DuckDB SQL syntax and data types.
+-- Create the `sale` table using SQLite SQL syntax and data types.
 CREATE TABLE IF NOT EXISTS sale (
   -- Every table must have a primary key that uniquely identifies each record.
   sale_id TEXT PRIMARY KEY,
@@ -85,30 +85,7 @@ CREATE TABLE IF NOT EXISTS sale (
 );
 --
 --
--- ============================================================
--- STEP 2: LOAD DATA (PARENT FIRST, THEN CHILD)
--- ============================================================
--- DUCKDB SPECIFIC:
--- DuckDB allows us to load data from CSV files using the DuckDB COPY command.
---
--- The independent table must be loaded first.
--- In retail, stores exist independently of sales.
--- Therefore, load the store table before the sale table.
---
--- SQLITE ALTERNATIVE:
--- If we used SQLite, we would load data using Python and pandas.
--- Load the parent (independent) table first.
-COPY store
-FROM 'data/raw/retail/store.csv'
-(HEADER, DELIMITER ',', QUOTE '"', ESCAPE '"');
 
--- Load the child (dependent) table second.
-COPY sale
-FROM 'data/raw/retail/sale.csv'
-(HEADER 1, DELIMITER ',', QUOTE '"', ESCAPE '"');
-
---
---
 -- ============================================================
 -- FINISH EXECUTION: ATOMIC BOOTSTRAP (ALL OR NOTHING)
 -- ============================================================
@@ -121,10 +98,10 @@ COMMIT;
 -- REFERENCE: DUCKDB COPY CSV OPTIONS
 -- ============================================================
 -- CUSTOM: WHEN USING DUCKDB COPY COMMAND, the last line tells how to read the CSV file.
+-- EXAMPLE: (WITH (HEADER TRUE, DELIMITER ',', QUOTE '"', ESCAPE '"'))
 --
--- HEADER 1:
+-- HEADER TRUE:
 -- The first row in the CSV file contains column headers (not data).
--- Use HEADER 0 if no header row.
 --
 -- DELIMITER ',':
 -- Columns are separated by commas.
