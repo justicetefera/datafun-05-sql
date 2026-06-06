@@ -35,8 +35,6 @@ You will run the retail example, then implement the same pipeline for a domain y
 
 ## Working Files
 
-You'll work with just these areas:
-
 - **data/raw/\*** - raw CSV input files
 - **data/processed/** - processed data outputs, if created
 - **artifacts/** - generated database files, logs, or reports
@@ -46,7 +44,7 @@ You'll work with just these areas:
 - **pyproject.toml** - update project metadata
 - **zensical.toml** - update documentation site metadata
 
-## Instructions (pro-analytics-02)
+## Instructions
 
 Follow the
 [step-by-step workflow guide](https://justicetefera.github.io/pro-analytics-02/workflow-b-apply-example-project/)
