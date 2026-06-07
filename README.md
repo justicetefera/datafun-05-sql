@@ -1,4 +1,4 @@
-# SQL
+# SQL + SQLite Retail Data Pipeline
 
 [![Workflow Guide](https://img.shields.io/badge/Pro--Guide-pro--analytics--02-green)](https://justicetefera.github.io/pro-analytics-02/workflow-b-apply-example-project/)
 [![Python 3.14](https://img.shields.io/badge/python-3.14%2B-blue?logo=python)](./pyproject.toml)
@@ -7,31 +7,23 @@
 > Professional Python project: relational data and SQL analytics.
 
 Data analytics requires a variety of skills.
-This course builds capabilities through working projects.
-
-In the age of generative AI, durable skills are grounded in real work:
-setting up a professional environment,
-reading and running code,
-understanding the logic,
-and pushing work to a shared repository.
-Each project follows the structure of professional Python projects.
-We learn by doing.
+This project builds capabilities through working projects.
 
 ## This Project
 
-This project introduces **relational data and SQL** used when storing structured data in tables.
-Analysts are typically highly skilled at both SQL and Python.
+This project reflects that every component — Environment setup, SQL logic, Python automation, logging, and repository workflow are built and executed as a working pipeline.
+It produces real outputs, cleaned tables, validated row counts, debug queries, KPI tables, and exported artifacts.
 
-Sample datasets are provided in the `data/raw` folder
-across several topic domains:
+The logs show the full lifecycle of the pipeline running end‑to‑end, including environment details, SQL execution order, row counts, and successful KPI materialization.
+
+This project extends a relational data and SQL pipeline by moving beyond simple `SELECT` queries to creating KPI tables that support deeper analysis. Analysts are typically highly skilled at both SQL and Python, and this work strengthens both.
 
 - **retail** - a store records many sales (the worked example)
 - **library** - a library branch manages many checkouts
 - **shelter** - a shelter manages many animal adoptions
 - **civic_event** - an event manages many attendees
 
-Each domain has two related tables in a 1-to-many relationship.
-You will run the retail example, then implement the same pipeline for a domain you choose.
+The retail dataset includes two related tables in a 1‑to‑many relationship: stores and sales. This pipeline processes the raw data, builds views, validates counts, and generates KPI tables that summarize store performance, revenue, and product trends.
 
 ## Working Files
 
@@ -55,36 +47,13 @@ Follow the [step-by-step workflow guide](https://justicetefera.github.io/datafun
 4. Phase 4. **Modify**
 5. Phase 5. **Apply**
 
-## Challenges
-
-Challenges are expected.
-Sometimes instructions may not quite match your operating system.
-When issues occur, share screenshots, error messages, and details about what you tried.
-Working through issues is part of implementing professional projects.
-
 ## Success
-
-After completing Phase 1. **Start & Run**, you'll have your own GitHub project,
-running on your machine.
 
 Running the examples should create generated database files in `artifacts/`.
 
 A new file `project.log` will appear in the root project folder
-and you should see:
-
-```shell
-========================
-Executed successfully!
-========================
-```
-
-A new file `project.log` will appear in the root project folder.
 
 ## Command Reference
-
-The commands below are used in the workflow guide above.
-They are provided here for convenience.
-
 Follow the guide for the **full instructions**.
 
 <details>
@@ -160,65 +129,81 @@ Press `Ctrl+c` (both keys together) or `Ctrl+Z` then `Enter` on Windows.
 ## DuckDB Output
 
 ```shell
-2026-06-04 02:05:07 | INFO | P05 | === RUN START ===
-2026-06-04 02:05:07 | INFO | P05 | project=P05 Pipeline Example (DuckDB)
-2026-06-04 02:05:07 | INFO | P05 | repo_dir=datafun-05-sql
-2026-06-04 02:05:07 | INFO | P05 | python=3.14.5
-2026-06-04 02:05:07 | INFO | P05 | os=Windows 11
-2026-06-04 02:05:07 | INFO | P05 | shell=powershell
-2026-06-04 02:05:07 | INFO | P05 | cwd=.
-2026-06-04 02:05:07 | INFO | P05 | github_actions=False
-2026-06-04 02:05:07 | INFO | P05 | START main()
-2026-06-04 02:05:07 | INFO | P05 | ROOT_DIR: C:\Users\JTEFE\Repos\datafun-05-sql
-2026-06-04 02:05:07 | INFO | P05 | DATA_RAW_DIR: C:\Users\JTEFE\Repos\datafun-05-sql\data\raw\retail
-2026-06-04 02:05:07 | INFO | P05 | DATA_PROCESSED_DIR: C:\Users\JTEFE\Repos\datafun-05-sql\data\processed\retail
-2026-06-04 02:05:07 | INFO | P05 | SQL_DIR: C:\Users\JTEFE\Repos\datafun-05-sql\sql\duckdb
-2026-06-04 02:05:07 | INFO | P05 | DB_PATH: C:\Users\JTEFE\Repos\datafun-05-sql\artifacts\duckdb\retail.duckdb
-2026-06-04 02:05:07 | INFO | P05 | RUN SQL script: C:\Users\JTEFE\Repos\datafun-05-sql\sql\duckdb\case_retail_clean.sql
-2026-06-04 02:05:07 | INFO | P05 | DONE SQL script: C:\Users\JTEFE\Repos\datafun-05-sql\sql\duckdb\case_retail_clean.sql
-2026-06-04 02:05:07 | INFO | P05 | RUN SQL script: C:\Users\JTEFE\Repos\datafun-05-sql\sql\duckdb\case_retail_bootstrap.sql
-2026-06-04 02:05:07 | INFO | P05 | DONE SQL script: C:\Users\JTEFE\Repos\datafun-05-sql\sql\duckdb\case_retail_bootstrap.sql
-2026-06-04 02:05:07 | INFO | P05 |
-2026-06-04 02:05:07 | INFO | P05 | RUN SQL query: C:\Users\JTEFE\Repos\datafun-05-sql\sql\duckdb\case_retail_query_store_count.sql
-2026-06-04 02:05:07 | INFO | P05 | ====================================
-2026-06-04 02:05:07 | INFO | P05 | case_retail_query_store_count.sql
-2026-06-04 02:05:07 | INFO | P05 | ====================================
-2026-06-04 02:05:07 | INFO | P05 | store_count
-2026-06-04 02:05:07 | INFO | P05 | 3
-2026-06-04 02:05:07 | INFO | P05 |
-2026-06-04 02:05:07 | INFO | P05 | RUN SQL query: C:\Users\JTEFE\Repos\datafun-05-sql\sql\duckdb\case_retail_query_sales_count.sql
-2026-06-04 02:05:07 | INFO | P05 | ====================================
-2026-06-04 02:05:07 | INFO | P05 | case_retail_query_sales_count.sql
-2026-06-04 02:05:07 | INFO | P05 | ====================================
-2026-06-04 02:05:07 | INFO | P05 | sale_count
-2026-06-04 02:05:07 | INFO | P05 | 30
-2026-06-04 02:05:07 | INFO | P05 |
-2026-06-04 02:05:07 | INFO | P05 | RUN SQL query: C:\Users\JTEFE\Repos\datafun-05-sql\sql\duckdb\case_retail_query_sales_aggregate.sql
-2026-06-04 02:05:07 | INFO | P05 | ====================================
-2026-06-04 02:05:07 | INFO | P05 | case_retail_query_sales_aggregate.sql
-2026-06-04 02:05:07 | INFO | P05 | ====================================
-2026-06-04 02:05:07 | INFO | P05 | sale_count, total_revenue, avg_sale_amount
-2026-06-04 02:05:07 | INFO | P05 | 30, 5227.0, 174.23
-2026-06-04 02:05:07 | INFO | P05 |
-2026-06-04 02:05:07 | INFO | P05 | RUN SQL query: C:\Users\JTEFE\Repos\datafun-05-sql\sql\duckdb\case_retail_query_sales_by_category.sql
-2026-06-04 02:05:07 | INFO | P05 | ====================================
-2026-06-04 02:05:07 | INFO | P05 | case_retail_query_sales_by_category.sql
-2026-06-04 02:05:07 | INFO | P05 | ====================================
-2026-06-04 02:05:07 | INFO | P05 | product_category, sale_count, total_revenue, avg_sale_amount
-2026-06-04 02:05:07 | INFO | P05 | Outdoors, 9, 3200.0, 355.56
-2026-06-04 02:05:07 | INFO | P05 | Clothing, 10, 1375.0, 137.5
-2026-06-04 02:05:07 | INFO | P05 | Food, 11, 652.0, 59.27
-2026-06-04 02:05:07 | INFO | P05 |
-2026-06-04 02:05:07 | INFO | P05 | RUN SQL query: C:\Users\JTEFE\Repos\datafun-05-sql\sql\duckdb\case_retail_query_kpi_revenue.sql
-2026-06-04 02:05:07 | INFO | P05 | ====================================
-2026-06-04 02:05:07 | INFO | P05 | case_retail_query_kpi_revenue.sql
-2026-06-04 02:05:07 | INFO | P05 | ====================================
-2026-06-04 02:05:07 | INFO | P05 | store_id, store_name, city, region, sale_count, total_revenue, avg_sale_amount
-2026-06-04 02:05:07 | INFO | P05 | S003, Central Plaza, Mankato, South, 10, 1868.0, 186.8
-2026-06-04 02:05:07 | INFO | P05 | S001, North Market, Duluth, North, 10, 1834.0, 183.4
-2026-06-04 02:05:07 | INFO | P05 | S002, Lakeside Shop, Ely, North, 10, 1525.0, 152.5
-2026-06-04 02:05:07 | INFO | P05 | ========================
-2026-06-04 02:05:07 | INFO | P05 | Executed successfully!
-2026-06-04 02:05:07 | INFO | P05 | ========================
-2026-06-04 02:05:07 | INFO | P05 | END main()
+2026-06-07 05:00:22,612 | INFO | JT | ##################
+2026-06-07 05:00:22,613 | INFO | JT | ### RUN START ####
+2026-06-07 05:00:22,613 | INFO | JT | ##################
+2026-06-07 05:00:22,613 | INFO | JT | project=JT Pipeline (SQLite)
+2026-06-07 05:00:22,613 | INFO | JT | repo_dir=datafun-05-sql
+2026-06-07 05:00:22,614 | INFO | JT | python=3.14.5
+2026-06-07 05:00:22,662 | INFO | JT | os=Windows 11
+2026-06-07 05:00:22,662 | INFO | JT | shell=powershell
+2026-06-07 05:00:22,662 | INFO | JT | cwd=C:\Users\JTEFE\Repos\datafun-05-sql
+2026-06-07 05:00:22,662 | INFO | JT | github_actions=False
+2026-06-07 05:00:22,663 | INFO | JT | START main()
+2026-06-07 05:00:22,663 | INFO | JT | ROOT_DIR: C:\Users\JTEFE\Repos\datafun-05-sql
+2026-06-07 05:00:22,663 | INFO | JT | SQL_DIR: C:\Users\JTEFE\Repos\datafun-05-sql\sql\sqlite
+2026-06-07 05:00:22,664 | INFO | JT | DB_PATH: C:\Users\JTEFE\Repos\datafun-05-sql\artifacts\sqlite\retail.db
+2026-06-07 05:00:22,665 | INFO | JT | RUN SQL script: C:\Users\JTEFE\Repos\datafun-05-sql\sql\sqlite\jt_retail_clean.sql
+2026-06-07 05:00:22,714 | INFO | JT | DONE SQL script: C:\Users\JTEFE\Repos\datafun-05-sql\sql\sqlite\jt_retail_clean.sql
+2026-06-07 05:00:22,715 | INFO | JT | Loading CSV data into SQLite...
+2026-06-07 05:00:22,718 | INFO | JT | CSV data loaded successfully.
+2026-06-07 05:00:22,718 | INFO | JT | RUN SQL script: C:\Users\JTEFE\Repos\datafun-05-sql\sql\sqlite\jt_views.sql
+2026-06-07 05:00:22,889 | INFO | JT | DONE SQL script: C:\Users\JTEFE\Repos\datafun-05-sql\sql\sqlite\jt_views.sql
+2026-06-07 05:00:22,890 | INFO | JT |
+2026-06-07 05:00:22,891 | INFO | JT | RUN SQL query: C:\Users\JTEFE\Repos\datafun-05-sql\sql\sqlite\jt_debug_sale_count.sql
+2026-06-07 05:00:22,891 | INFO | JT | ====================================
+2026-06-07 05:00:22,892 | INFO | JT | jt_debug_sale_count.sql
+2026-06-07 05:00:22,892 | INFO | JT | ====================================
+2026-06-07 05:00:22,893 | INFO | JT | sale_rows
+2026-06-07 05:00:22,894 | INFO | JT | 30
+2026-06-07 05:00:22,896 | INFO | JT |
+2026-06-07 05:00:22,896 | INFO | JT | RUN SQL query: C:\Users\JTEFE\Repos\datafun-05-sql\sql\sqlite\jt_debug_store_count.sql
+2026-06-07 05:00:22,897 | INFO | JT | ====================================
+2026-06-07 05:00:22,898 | INFO | JT | jt_debug_store_count.sql
+2026-06-07 05:00:22,899 | INFO | JT | ====================================
+2026-06-07 05:00:22,900 | INFO | JT | store_rows
+2026-06-07 05:00:22,900 | INFO | JT | 3
+2026-06-07 05:00:22,901 | INFO | JT |
+2026-06-07 05:00:22,901 | INFO | JT | RUN SQL query: C:\Users\JTEFE\Repos\datafun-05-sql\sql\sqlite\jt_debug_sale_peek.sql
+2026-06-07 05:00:22,901 | INFO | JT | ====================================
+2026-06-07 05:00:22,901 | INFO | JT | jt_debug_sale_peek.sql
+2026-06-07 05:00:22,901 | INFO | JT | ====================================
+2026-06-07 05:00:22,902 | INFO | JT | sale_id, store_id, product_category, quantity, amount, sale_date
+2026-06-07 05:00:22,902 | INFO | JT | SA001, S001, Clothing, 2, 120.0, 2026-01-05
+2026-06-07 05:00:22,902 | INFO | JT | SA002, S001, Food, 5, 45.0, 2026-01-06
+2026-06-07 05:00:22,902 | INFO | JT | SA003, S002, Outdoors, 1, 250.0, 2026-01-07
+2026-06-07 05:00:22,902 | INFO | JT | SA004, S002, Food, 3, 30.0, 2026-01-08
+2026-06-07 05:00:22,902 | INFO | JT | SA005, S003, Clothing, 1, 60.0, 2026-01-09
+2026-06-07 05:00:22,903 | INFO | JT |
+2026-06-07 05:00:22,903 | INFO | JT | RUN SQL query: C:\Users\JTEFE\Repos\datafun-05-sql\sql\sqlite\jt_debug_store_peek.sql
+2026-06-07 05:00:22,903 | INFO | JT | ====================================
+2026-06-07 05:00:22,903 | INFO | JT | jt_debug_store_peek.sql
+2026-06-07 05:00:22,903 | INFO | JT | ====================================
+2026-06-07 05:00:22,904 | INFO | JT | store_id, store_name, city, region
+2026-06-07 05:00:22,904 | INFO | JT | S001, North Market, Duluth, North
+2026-06-07 05:00:22,904 | INFO | JT | S002, Lakeside Shop, Ely, North
+2026-06-07 05:00:22,904 | INFO | JT | S003, Central Plaza, Mankato, South
+2026-06-07 05:00:22,905 | INFO | JT | RUN SQL script: C:\Users\JTEFE\Repos\datafun-05-sql\sql\sqlite\jt_kpi_revenue_by_region.sql
+2026-06-07 05:00:22,968 | INFO | JT | DONE SQL script: C:\Users\JTEFE\Repos\datafun-05-sql\sql\sqlite\jt_kpi_revenue_by_region.sql
+2026-06-07 05:00:22,968 | INFO | JT | RUN SQL script: C:\Users\JTEFE\Repos\datafun-05-sql\sql\sqlite\jt_kpi_sales_aggregate.sql
+2026-06-07 05:00:23,041 | INFO | JT | DONE SQL script: C:\Users\JTEFE\Repos\datafun-05-sql\sql\sqlite\jt_kpi_sales_aggregate.sql
+2026-06-07 05:00:23,042 | INFO | JT | RUN SQL script: C:\Users\JTEFE\Repos\datafun-05-sql\sql\sqlite\jt_kpi_sales_by_category.sql
+2026-06-07 05:00:23,111 | INFO | JT | DONE SQL script: C:\Users\JTEFE\Repos\datafun-05-sql\sql\sqlite\jt_kpi_sales_by_category.sql
+2026-06-07 05:00:23,112 | INFO | JT | RUN SQL script: C:\Users\JTEFE\Repos\datafun-05-sql\sql\sqlite\jt_kpi_revenue_by_store.sql
+2026-06-07 05:00:23,179 | INFO | JT | DONE SQL script: C:\Users\JTEFE\Repos\datafun-05-sql\sql\sqlite\jt_kpi_revenue_by_store.sql
+2026-06-07 05:00:23,180 | INFO | JT | RUN SQL script: C:\Users\JTEFE\Repos\datafun-05-sql\sql\sqlite\jt_kpi_top_selling_product_categories.sql
+2026-06-07 05:00:23,249 | INFO | JT | DONE SQL script: C:\Users\JTEFE\Repos\datafun-05-sql\sql\sqlite\jt_kpi_top_selling_product_categories.sql
+2026-06-07 05:00:23,250 | INFO | JT | RUN SQL script: C:\Users\JTEFE\Repos\datafun-05-sql\sql\sqlite\jt_kpi_store_performance_ranking.sql
+2026-06-07 05:00:23,317 | INFO | JT | DONE SQL script: C:\Users\JTEFE\Repos\datafun-05-sql\sql\sqlite\jt_kpi_store_performance_ranking.sql
+2026-06-07 05:00:23,319 | INFO | JT | RUN SQL script: C:\Users\JTEFE\Repos\datafun-05-sql\sql\sqlite\jt_kpi_table.sql
+2026-06-07 05:00:23,387 | INFO | JT | DONE SQL script: C:\Users\JTEFE\Repos\datafun-05-sql\sql\sqlite\jt_kpi_table.sql
+2026-06-07 05:00:23,388 | INFO | JT | RUN SQL script: C:\Users\JTEFE\Repos\datafun-05-sql\sql\sqlite\jt_export_kpi_table.sql
+2026-06-07 05:00:23,456 | INFO | JT | DONE SQL script: C:\Users\JTEFE\Repos\datafun-05-sql\sql\sqlite\jt_export_kpi_table.sql
+2026-06-07 05:00:23,457 | INFO | JT | #################################
+2026-06-07 05:00:23,457 | INFO | JT | ##### Executed successfully! ####
+2026-06-07 05:00:23,458 | INFO | JT | #################################
+
 ```
+#### This project demonstrated the strength of SQL for working with structured relational data in SQLite.
+#### The 1‑to‑many relationship between stores and sales made SQL the ideal tool for joins, aggregations, and KPI calculations. Once the SQL scripts were organized, modifying or adding new transformations was straightforward.
+#### Python acted as the controller for the entire workflow — loading CSVs, executing SQL scripts, validating row counts, and generating logs.  This structure makes the workflow predictable, repeatable, and easy to extend.
