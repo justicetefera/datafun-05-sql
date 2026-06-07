@@ -11,6 +11,14 @@
 # ============================================================
 
 [project]
+site_name = "datafun-05-sql"
+site_url = "https://justicetefera.github.io/datafun-05-sql/"
+repo_url = "https://github.com/justicetefera/datafun-05-sql"
+repo_name = "justicetefera/datafun-05-sql"
+site_description = "Retail Analytics Pipeline using SQL and SQLite"
+docs_dir = "docs"
+site_dir = "site"
+edit_uri = "edit/main/docs/"
 name = "datafun-05-sql" # CUSTOM: Package distribution name (use lowercase and dashes).
 readme = "README.md"
 requires-python = ">=3.14"
